@@ -2,6 +2,7 @@ package com.example.web;
 
 import java.util.Map;
 
+import com.example.service.GachaService;
 import com.example.service.HelloWorldService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,16 +24,21 @@ public class WelcomeController {
 		this.helloWorldService = helloWorldService;
 	}
 
+	@Autowired
+	private GachaService gachaService;
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Map<String, Object> model) {
 
-		logger.debug("http / index() is executed!");
+		logger.debug("*** http / index() is executed! - " + gachaService.version());
 
 		model.put("title", helloWorldService.getTitle(""));
 		model.put("msg", helloWorldService.getDesc());
 		
 		return "index";
 	}
+
+
 
 	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
 	public ModelAndView hello(@PathVariable("name") String name) {
