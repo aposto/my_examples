@@ -30,7 +30,7 @@ public class WelcomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Map<String, Object> model) {
 
-		logger.debug("*** http / index() is executed! - " + gachaService.version());
+		logger.debug("[tomcat 9] http / index() is executed! - " + gachaService.version());
 
 		model.put("title", helloWorldService.getTitle(""));
 		model.put("msg", helloWorldService.getDesc());
